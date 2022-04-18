@@ -1,33 +1,52 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Form from './components/MemeForm';
+import boxes from './components/boxes';
 import { useState } from 'react';
-import Star from './components/Star';
+import Box from './components/Box';
 
 export default function App() {
-  // const [isGoingOut, setIsGoingOut] = useState(true);
-  
-  // function flip(){
-  //   setIsGoingOut(prevState => !prevState);
+  const [squares, setSquares] = useState(boxes);
+  // const styles = {
+  //   backgroundColor: darkMode ? '#222222' : '#cccccc'
+    
   // }
-  const [contact, setContact] = useState({
-    firstName: "John",
-    lastName: "Ziroll",
-    phone: "+234 8989380083",
-    email: "ojeijhueg@gmail.com",
-    isFavorite: true
-  })
 
-  let starIcon = contact.isFavorite ? "filled" : "empty";
+  function toggle(id){
+    setSquares(prevSquares => {
+      // declarative method 
+      return prevSquares.map(square => {
+        return square.id === id ? {...square, on: !square.on} : square
+      })
 
-  function setFavorite(){
-    setContact(prevState => {
-      return{
-        ...prevState,
-        isFavorite: !prevState.isFavorite
-      }
+      // imperative method 
+    //   const newSquares = [];
+    //   for (let i = 0; i < prevSquares.length; i++) {
+    //     const currentSquare = prevSquares[i];
+    //     console.log(id)
+    //     if(currentSquare.id === id){
+    //       const updatedSquare = {
+    //         ...currentSquare,
+    //         on: !currentSquare.on
+    //       }
+    //       newSquares.push(updatedSquare);
+    //     }else{
+    //       newSquares.push(currentSquare);
+    //     }
+    //   }
+    //   return newSquares;
     })
   }
+
+  const squareElements = squares.map(square => (
+    <Box 
+      key={square.id} 
+      on={square.on}
+      toggle={() => toggle(square.id)}
+      // style={styles}
+      />
+    // <div style={styles} className="box" key={square.id}></div>
+  ))
 
   return (
     <div className="App">
@@ -35,24 +54,9 @@ export default function App() {
       <div className="form">
         <Form />
       </div>
-      <div className="contact flex flex-col justify-center align-center">
-        <div className="flex">
-           <Star 
-            isFilled={starIcon}
-            setFav={setFavorite}
-           />
-          <h2 className="name">{contact.firstName} {contact.lastName}</h2>
-        </div>
-        <p>{contact.phone}</p>
-        <p>{contact.email}</p>
-      
+      <div className="square flex ">
+        {squareElements}
       </div>
-      {/* <div className="state text-center">
-        <h4>Do I feel like going out tonight?</h4>
-        <div className="form" onClick={flip}>
-          <h4>{isGoingOut ? "Yes" : "No"}</h4>
-        </div>
-      </div> */}
 
     </div>
   );

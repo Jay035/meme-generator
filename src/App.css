@@ -106,3 +106,16 @@ button{
 .bottom--text{
   bottom: 0;
 }
+
+.box{
+  height: 100px;
+  width: 110px;
+  border: 2px solid #000;
+}
+
+.square{
+  gap: 5px;
+  flex-wrap: wrap;
+  width: 400px;
+  margin-inline: auto;
+}

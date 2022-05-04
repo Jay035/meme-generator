@@ -1,63 +1,32 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Form from './components/MemeForm';
-import boxes from './components/boxes';
-import { useState } from 'react';
-import Box from './components/Box';
+// import { useEffect, useState } from 'react';
+// import WindowTracker from './components/WindowTracker';
 
 export default function App() {
-  const [squares, setSquares] = useState(boxes);
-  // const styles = {
-  //   backgroundColor: darkMode ? '#222222' : '#cccccc'
-    
-  // }
 
-  function toggle(id){
-    setSquares(prevSquares => {
-      // declarative method 
-      return prevSquares.map(square => {
-        return square.id === id ? {...square, on: !square.on} : square
-      })
+  // const [starWarsdata, setStarWarsData] = useState({});
+  // const [count, setCount] = useState(1);
 
-      // imperative method 
-    //   const newSquares = [];
-    //   for (let i = 0; i < prevSquares.length; i++) {
-    //     const currentSquare = prevSquares[i];
-    //     console.log(id)
-    //     if(currentSquare.id === id){
-    //       const updatedSquare = {
-    //         ...currentSquare,
-    //         on: !currentSquare.on
-    //       }
-    //       newSquares.push(updatedSquare);
-    //     }else{
-    //       newSquares.push(currentSquare);
-    //     }
-    //   }
-    //   return newSquares;
-    })
-  }
+  // console.log('component rendered')
+  // useEffect(() => {
+  //   fetch(`https://swapi.dev/api/people/${count}`)
+  //     .then(res => res.json())
+  //     .then(data => setStarWarsData(data))
+  //     .catch(err => console.log(err))
+  // }, [count])
 
-  const squareElements = squares.map(square => (
-    <Box 
-      key={square.id} 
-      on={square.on}
-      toggle={() => toggle(square.id)}
-      // style={styles}
-      />
-    // <div style={styles} className="box" key={square.id}></div>
-  ))
-
+  // const [show, setShow] = useState(true)
+  // console.log(show)
   return (
     <div className="App">
       <Navbar />
       <div className="form">
         <Form />
       </div>
-      <div className="square flex ">
-        {squareElements}
-      </div>
-
+      {/* <button onClick={() => setShow(prevState => !prevState)}>Toggle windowtracker</button>
+      {show && <WindowTracker />} */}
     </div>
   );
 }

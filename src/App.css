@@ -86,7 +86,9 @@ button{
   width: 100%;
   max-width: 100%;
   margin-inline: auto;
-  
+  /* opacity: .5; */
+  filter: brightness(70%);
+  z-index: -1;
 }
 
 .top--text,
@@ -97,6 +99,7 @@ button{
   font-size: xx-large;
   font-weight: 700;
   letter-spacing: 1.5px;
+  /* z-index: 99999; */
 }
 
 .top--text{
